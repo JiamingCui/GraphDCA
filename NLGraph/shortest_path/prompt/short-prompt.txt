@@ -1,0 +1,30 @@
+In an undirected graph, the nodes are numbered from 0 to 4, and the edges are:
+an edge between node 0 and node 1 with weight 2,
+an edge between node 1 and node 4 with weight 1,
+an edge between node 0 and node 2 with weight 1,
+an edge between node 2 and node 3 with weight 1,
+an edge between node 3 and node 4 with weight 2.
+Let's construct a graph with the nodes and edges first.
+Q: Give the shortest path from node 0 to node 4.
+A: All the paths from node 0 to node 4 are:
+0,1,4 with a total weight of 2 + 1 = 3,
+0,2,3,4 with a total weight of 1 + 1 + 2 = 4.
+The weight of path 0,1,4 is the smallest, so the shortest path from node 0 to node 4 is 0,1,4 with a total weight of 3.
+
+In an undirected graph, the nodes are numbered from 0 to 6, and the edges are:
+an edge between node 0 and node 1 with weight 1,
+an edge between node 1 and node 2 with weight 2,
+an edge between node 0 and node 2 with weight 4,
+an edge between node 0 and node 4 with weight 2,
+an edge between node 2 and node 6 with weight 2,
+an edge between node 4 and node 6 with weight 4,
+an edge between node 4 and node 3 with weight 5,
+an edge between node 6 and node 5 with weight 3,
+an edge between node 3 and node 5 with weight 4.
+Let's construct a graph with the nodes and edges first.
+Q: All the paths from node 0 to node 5 are:
+0,2,6,5 with a total weight of 4 + 2 + 3 = 9,
+0,1,2,6,5 with a total weight of 1 + 2 + 2 + 3 = 8,
+0,4,6,5 with a total weight of 2 + 4 + 3 = 9,
+0,4,3,5 with a total weight of 2 + 5 + 4 = 11.
+The weight of path 0,1,2,6,5 is the smallest, so the shortest path from node 0 to node 5 is 0,1,2,6,5 with a total weight of 8.

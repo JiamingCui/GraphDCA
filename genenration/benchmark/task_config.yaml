@@ -1,0 +1,61 @@
+cycle_train: &cycle_train
+  min_nodes: [4, 20, 40, 60, 80]
+  max_nodes: [20, 40, 60, 80, 100]
+  max_edges: [500, 500, 500, 500, 500]
+  min_ratio: [0.4, 0.15, 0.1, 0.06, 0.05]
+  max_ratio: [0.6, 0.2, 0.12, 0.08, 0.07]
+  weight: [False, False, False, False, False]
+  directed: [False, False, False, False, False]
+  samples_needed: [600, 600, 600, 600, 600]
+  prompt: "Determine whether or not there is a cycle in an undirected graph. 
+  In an undirected graph, (i,j) means that node i and node j are connected with an undirected edge. 
+  Given a graph, you need to output Yes or No, indicating whether there is a cycle in the graph.
+  Q: The nodes are numbered from {} to {}, and the edges are: {}. Is there a cycle in this graph?" 
+  answer: "### {}"
+  store_path: "../datasets/train_set/cycle_train.json"
+  GPT_prompt: " In an undirected graph, (i,j) means that there is an undirected edge between node i and node j. Given a graph, you need to determine if a cycle exists. 
+  Your output first contains your reasoning process and then begin with '###' to give your final answer, i.e., '### Yes' or '### No'. Let's think step by step. 
+  I will provide some examples for your better understanding.
+  {}  Q: The nodes are numbered from {} to {}, and the edges are: {}. Does the graph contain a cycle?"
+
+connectivity_train: &connectivity_train
+  min_nodes: [2, 20, 40, 60, 80]
+  max_nodes: [20, 40, 60, 80, 100]
+  max_edges: [500, 500, 500, 500, 500]
+  min_ratio: [0.4, 0.2, 0.04, 0.02, 0.02]
+  max_ratio: [0.6, 0.25, 0.06, 0.04, 0.03]
+  weight: [False, False, False, False, False]
+  directed: [False, False, False, False, False]
+  samples_needed: [600, 600, 600, 600, 600]
+  prompt: "Determine whether two nodes are connected in an undirected graph. 
+  In an undirected graph, (i,j) means that node i and node j are connected with an undirected edge.
+  Given a graph and a pair of nodes, you need to output Yes or No, indicating whether the node i and node j are connected. 
+  Q: The nodes are numbered from {} to {}, and the edges are: {}. Is there a path between node {} and node {}?"
+  answer: "### {}"
+  store_path: "../datasets/train_set/connectivity_train.json"
+  GPT_prompt: "Determine whether two nodes are connected in an undirected graph. 
+  In an undirected graph, (i,j) means that node i and node j are connected with an undirected edge.
+  Given a graph and a question containing a pair of nodes, you need to output Yes or No, indicating whether the node i and node j are connected. Your output first contains your reasoning process and then begin with '###' to give your final answer, i.e., '### Yes' or '### No'. Let's think step by step.
+  I will give you some demonstrations for your better understanding. {} Q: The nodes are numbered from {} to {}, and the edges are: {}. Is there a path between node {} and node {}?"
+
+shortest_train: &shortest_train
+  min_nodes: [2, 20, 40, 60, 80]
+  max_nodes: [20, 40, 60, 80, 100]
+  max_edges: [500, 500, 500, 500, 500]
+  min_ratio: [0.2, 0.15, 0.1, 0.06, 0.05]
+  max_ratio: [0.5, 0.2, 0.12, 0.08, 0.07]
+  weight: [True, True, True, True, True]
+  directed: [False, False, False, False, False]
+  samples_needed: [300, 300, 300, 300, 300]
+  prompt: "Find the shortest path between two nodes in an undirected graph.
+  In an undirected graph, (i,j,k) means that node i and node j are connected with an undirected edge with weight k. 
+  Given a graph and a pair of nodes, you need to output the shortest path between the two nodes.
+  Q: The nodes are numbered from {} to {}, and the edges are: {}. Give the weight of the shortest path from node {} to node {}."
+  answer: "### {}"
+  store_path: "../datasets/train_set/shortest_train.json"
+  GPT_prompt: "Find the shortest path between two nodes in an undirected graph.
+  In an undirected graph, (i,j,k) means that node i and node j are connected with an undirected edge with weight k.
+  Given a graph and a pair of nodes, you need to output the shortest path between the two nodes.
+  Your output first contains your reasoning process and then begin with '###' to give your final answer, i.e., '### 1' or '### 2'. Let's think step by step.
+  I will provide some examples for your better understanding.
+  {} Q: The nodes are numbered from {} to {}, and the edges are: {}. Give the weight of the shortest path from node {} to node {}. Output the total weight of the path. Begin with '###' to give your final conclusion."
