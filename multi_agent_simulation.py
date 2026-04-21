@@ -21,7 +21,8 @@
 稳定性:
   不一致性模式特征多项式: s^3 + K1*s^2 + (omega0^2 + K1*c1*lambda)*s + K1*omega0^2
   由 Routh-Hurwitz 判据, 对任意 K1,K2,c1,lambda > 0 均稳定。
-  一致性模式: 特征根为 -K1, -K2±j*sqrt(K1-K2^2/4) (稳定) 和 ±j*omega0 (纯虚, 对应稳态振荡)。
+  一致性模式: 特征根为 -K1 (稳定) 和 ±j*omega0 (纯虚, 对应稳态振荡)。
+  双积分器 PD 跟踪极点: s = -K2/2 ± j*sqrt(K1 - K2^2/4) (欠阻尼稳定)。
 """
 
 import numpy as np
@@ -83,6 +84,7 @@ def rhs(t, z):
 
     for i in range(N):
         # 耦合项: sum_j a_ij*(d_j*y_j - d_i*y_i)
+        # 等价展开: np.dot(A_adj[i], d*y) - d[i]*y[i]*sum(A_adj[i])
         coupling = np.dot(A_adj[i], d * y - d[i] * y[i])
 
         # 内部模型 (注入第一方程 — 保证稳定)
@@ -146,6 +148,7 @@ for i in range(N):
             linewidth=1.5, label=labels_cn[i])
 
 ax.set_xlabel('时间 (秒)', fontsize=12)
+ax.set_ylabel('输出 y_i', fontsize=12)
 ax.set_title('多智能体系统输出', fontsize=14)
 ax.legend(loc='upper right', fontsize=10)
 ax.grid(True, alpha=0.4)
